@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-cloud-sun"></i> Weather Dashboard</h1>
+                <p>Real-time weather updates for your location</p>
+            </div>
+        </header>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="Search for a city... (e.g., London, New York, Tokyo)"
+                    autocomplete="off"
+                >
+                <button id="searchBtn" class="search-btn">
+                    <i class="fas fa-search"></i> Search
+                </button>
+                <button id="locationBtn" class="location-btn" title="Use my location">
+                    <i class="fas fa-map-marker-alt"></i>
+                </button>
+            </div>
+            <div class="search-suggestions" id="suggestions"></div>
+        </section>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Current Weather Section -->
+            <section class="current-weather-section">
+                <div class="current-weather" id="currentWeather">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading weather data...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Weather Details Grid -->
+            <section class="details-section">
+                <div class="details-grid" id="detailsGrid">
+                    <!-- Details will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Hourly Forecast -->
+            <section class="forecast-section">
+                <h2><i class="fas fa-clock"></i> Hourly Forecast</h2>
+                <div class="hourly-forecast" id="hourlyForecast">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5-Day Forecast -->
+            <section class="forecast-section">
+                <h2><i class="fas fa-calendar-days"></i> 5-Day Forecast</h2>
+                <div class="daily-forecast" id="dailyForecast">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Air Quality Section -->
+            <section class="air-quality-section">
+                <h2><i class="fas fa-wind"></i> Air Quality</h2>
+                <div class="air-quality-card" id="airQuality">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Map Section -->
+            <section class="map-section">
+                <h2><i class="fas fa-map"></i> Weather Map</h2>
+                <div class="map-container">
+                    <div id="weatherMap" class="weather-map"></div>
+                    <p class="map-info">Select a weather layer to view on the map</p>
+                </div>
+                <div class="map-controls">
+                    <button class="map-btn active" data-layer="clouds">Clouds</button>
+                    <button class="map-btn" data-layer="precipitation">Precipitation</button>
+                    <button class="map-btn" data-layer="temp">Temperature</button>
+                    <button class="map-btn" data-layer="wind">Wind</button>
+                </div>
+            </section>
+
+            <!-- Recent Searches -->
+            <section class="recent-section">
+                <h2><i class="fas fa-history"></i> Recent Searches</h2>
+                <div class="recent-searches" id="recentSearches">
+                    <p class="empty-message">No recent searches</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Weather data provided by <strong>OpenWeatherMap</strong> API</p>
+            <p>Built with <i class="fas fa-heart"></i> | Weather Dashboard v1.0</p>
+        </footer>
+    </div>
+
+    <!-- Error Modal -->
+    <div class="modal" id="errorModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-exclamation-circle"></i> Error</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="errorMessage">An error occurred. Please try again.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
